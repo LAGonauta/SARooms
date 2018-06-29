@@ -405,7 +405,7 @@ MonoBehaviour:
   heightAboveFloor: 1.5
   maxNumTriangles: 64
   maxOctreeDepth: 2
-  dataSize: 27364
+  dataSize: 19756660
   probeSpherePoints:
   - -78.366714
   - 3.63
@@ -5880,7 +5880,12 @@ MonoBehaviour:
   - 2
   - 2
   - 2
-  dataLayerInfo: []
+  dataLayerInfo:
+  - name: reverb
+    identifier:
+      identifier: 0
+      type: 2
+    size: 19718352
 --- !u!1 &97197142
 GameObject:
   m_ObjectHideFlags: 0
@@ -6355,6 +6360,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -6683,6 +6690,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -6845,6 +6854,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 1
@@ -7010,6 +7021,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 1
@@ -7199,6 +7212,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 8.33
@@ -8150,10 +8165,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useAllProbeBoxes: 1
   probeBoxes: []
-  bakedProbeNames: []
-  bakedProbeDataSizes: 
-  bakedDataSize: 0
-  bakedStatsFoldout: 0
+  bakedProbeNames:
+  - Probebox 1
+  bakedProbeDataSizes: d0e02c01
+  bakedDataSize: 19718352
+  bakedStatsFoldout: 1
   bakeToggle: 1
   currentStaticListenerNode: {fileID: 0}
 --- !u!114 &280109468
@@ -8308,7 +8324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1755cf01ec36db74aa5c0718cbce6df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayTracerOption: 0
+  rayTracerOption: 1
   convolutionOption: 0
   minComputeUnitsToReserve: 1
   maxComputeUnitsToReserve: 8
@@ -8360,6 +8376,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 1
   sourceRadius: 1
@@ -8923,6 +8941,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 1
@@ -10760,6 +10780,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -10934,6 +10956,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 1
@@ -11376,6 +11400,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -13020,6 +13046,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -14280,6 +14308,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 1
   sourceRadius: 1
@@ -14554,6 +14584,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 1
   sourceRadius: 0.5
@@ -15188,6 +15220,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -15410,6 +15444,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 0.1
@@ -15938,6 +15974,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 1
   sourceRadius: 0.1
@@ -16478,6 +16516,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 0
   occlusionMethod: 0
   sourceRadius: 1
@@ -17691,6 +17731,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 0.1
@@ -19585,6 +19627,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 0
   sourceRadius: 0.1
@@ -19943,6 +19987,8 @@ MonoBehaviour:
   interpolation: 1
   physicsBasedAttenuation: 1
   airAbsorption: 1
+  dipoleWeight: 0
+  dipolePower: 0
   occlusionMode: 3
   occlusionMethod: 1
   sourceRadius: 1
