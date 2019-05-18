@@ -13,18 +13,17 @@ using UnityEditor;
 
 namespace Pixelplacement
 {
-	public class EditorUtilities : Editor
-	{
-		#region Public Methods
-		/// <summary>
-		/// Global error for the Editor.
-		/// </summary>
-		/// <param name="errorMessage">Error message.</param>
-		public static void Error (string errorMessage)
-		{
-			EditorUtility.DisplayDialog ("Framework Error", errorMessage, "OK");
-		}
-		#endregion
-	}
+    public class EditorUtilities : Editor
+    {
+        //Public Methods:
+        /// <summary>
+        /// Global error for the Editor.
+        /// </summary>
+        /// <param name="errorMessage">Error message.</param>
+        public static void Error (string errorMessage)
+        {
+            EditorUtility.DisplayDialog ("Framework Error", errorMessage, "OK");
+        }
+    }
 }
 #endif

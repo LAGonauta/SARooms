@@ -27,17 +27,23 @@ namespace SteamAudio
         //
         // Constructor.
         //
-        public SimulationSettingsValue(int realtimeRays, int realtimeSecondaryRays, int realtimeBounces, int bakeRays, int bakeSecondaryRays, int bakeBounces, float duration, int ambisonicsOrder, int maxSources)
+        public SimulationSettingsValue(int realtimeRays, int realtimeSecondaryRays, int realtimeBounces, 
+            int realtimeThreadsPercentage, int bakeRays, int bakeSecondaryRays, int bakeBounces, 
+            int bakeThreadsPercentage, float duration, int ambisonicsOrder, int maxSources,
+            float irradianceMinDistance)
         {
             RealtimeRays = realtimeRays;
             RealtimeSecondaryRays = realtimeSecondaryRays;
             RealtimeBounces = realtimeBounces;
+            RealtimeThreadsPercentage = realtimeThreadsPercentage;
             BakeRays = bakeRays;
             BakeSecondaryRays = bakeSecondaryRays;
             BakeBounces = bakeBounces;
+            BakeThreadsPercentage = bakeThreadsPercentage;
             Duration = duration;
             AmbisonicsOrder = ambisonicsOrder;
             MaxSources = maxSources;
+            IrradianceMinDistance = irradianceMinDistance;
         }
 
         //
@@ -56,17 +62,23 @@ namespace SteamAudio
             RealtimeRays = other.RealtimeRays;
             RealtimeBounces = other.RealtimeBounces;
             RealtimeSecondaryRays = other.RealtimeSecondaryRays;
+            RealtimeThreadsPercentage = other.RealtimeThreadsPercentage;
             BakeRays = other.BakeRays;
             BakeSecondaryRays = other.BakeSecondaryRays;
             BakeBounces = other.BakeBounces;
+            BakeThreadsPercentage = other.BakeThreadsPercentage;
             Duration = other.Duration;
             AmbisonicsOrder = other.AmbisonicsOrder;
             MaxSources = other.MaxSources;
+            IrradianceMinDistance = other.IrradianceMinDistance;
         }
 
         //
         // Data members.
         //
+
+        [Range(4, 1024)]
+        public int OcclusionSamples = 128;
 
         // Number of rays to trace for realtime simulation.
         [Range(512, 16384)]
@@ -80,6 +92,11 @@ namespace SteamAudio
         [Range(1, 32)]
         public int RealtimeBounces;
 
+        // Minimum number of threads to use for realtime simulation.
+        [Tooltip("As percentage of logical processors used on end users machine. Minimum of 1 thread is used.")]
+        [Range(1, 99)]
+        public int RealtimeThreadsPercentage = 5;
+
         // Number of rays to trace for baking simulation.
         [Range(8192, 65536)]
         public int BakeRays;
@@ -92,6 +109,11 @@ namespace SteamAudio
         [Range(16, 256)]
         public int BakeBounces;
 
+        // Number of threads to use for baking simulation.
+        [Tooltip("As percentage of logical processors used on developers machine. Minimum of 1 thread is used.")]
+        [Range(1, 99)]
+        public int BakeThreadsPercentage = 5;
+
         // Duration of IR.
         [Range(0.1f, 5.0f)]
         public float Duration;
@@ -103,5 +125,8 @@ namespace SteamAudio
         // Maximum number of supported sources.
         [Range(1, 128)]
         public int MaxSources = 32;
+
+        [Range(0.1f, 10.0f)]
+        public float IrradianceMinDistance = 1.0f;
     }
 }

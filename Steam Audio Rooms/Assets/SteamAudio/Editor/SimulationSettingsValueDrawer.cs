@@ -21,7 +21,7 @@ namespace SteamAudio
         //
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return 192;
+            return 280;
         }
 
         //
@@ -42,6 +42,8 @@ namespace SteamAudio
             EditorGUI.PropertyField(position, property.FindPropertyRelative("AmbisonicsOrder"));
             position.y += 16f;
             EditorGUI.PropertyField(position, property.FindPropertyRelative("MaxSources"));
+            position.y += 16f;
+            EditorGUI.PropertyField(position, property.FindPropertyRelative("IrradianceMinDistance"));
             position.y += 24f;
             EditorGUI.LabelField(position, "Realtime Settings", EditorStyles.boldLabel);
             position.y += 16f;
@@ -50,6 +52,8 @@ namespace SteamAudio
             EditorGUI.PropertyField(position, property.FindPropertyRelative("RealtimeSecondaryRays"));
             position.y += 16f;
             EditorGUI.PropertyField(position, property.FindPropertyRelative("RealtimeBounces"));
+            position.y += 16f;
+            EditorGUI.PropertyField(position, property.FindPropertyRelative("RealtimeThreadsPercentage"), new GUIContent("Realtime CPU Cores (%)"));
             position.y += 24f;
             EditorGUI.LabelField(position, "Baking Settings", EditorStyles.boldLabel);
             position.y += 16f;
@@ -58,6 +62,12 @@ namespace SteamAudio
             EditorGUI.PropertyField(position, property.FindPropertyRelative("BakeSecondaryRays"));
             position.y += 16f;
             EditorGUI.PropertyField(position, property.FindPropertyRelative("BakeBounces"));
+            position.y += 16f;
+            EditorGUI.PropertyField(position, property.FindPropertyRelative("BakeThreadsPercentage"), new GUIContent("Baking CPU Cores (%)"));
+            position.y += 24f;
+            EditorGUI.LabelField(position, "Occlusion Settings", EditorStyles.boldLabel);
+            position.y += 16f;
+            EditorGUI.PropertyField(position, property.FindPropertyRelative("OcclusionSamples"));
         }
     }
 }

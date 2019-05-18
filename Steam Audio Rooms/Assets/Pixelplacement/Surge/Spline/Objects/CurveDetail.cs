@@ -13,19 +13,17 @@ using UnityEngine;
 
 namespace Pixelplacement
 {
-	public struct CurveDetail
-	{
-		#region Public Variables
-		public int currentCurve;
-		public float currentCurvePercentage;
-		#endregion
+    public struct CurveDetail
+    {
+        //Public Variables:
+        public int currentCurve;
+        public float currentCurvePercentage;
 
-		#region Constructor
-		public CurveDetail (int currentCurve, float currentCurvePercentage)
-		{
-			this.currentCurve = currentCurve;
-			this.currentCurvePercentage = currentCurvePercentage;
-		}
-		#endregion
-	}
+        //Constructor:
+        public CurveDetail (int currentCurve, float currentCurvePercentage)
+        {
+            this.currentCurve = currentCurve;
+            this.currentCurvePercentage = currentCurvePercentage;
+        }
+    }
 }

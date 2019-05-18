@@ -11,58 +11,53 @@ using Pixelplacement;
 
 namespace Pixelplacement.TweenSystem
 {
-	class CanvasGroupAlpha : TweenBase
-	{
-		#region Public Properties
-		public float EndValue {get; private set;}
-		#endregion
+    class CanvasGroupAlpha : TweenBase
+    {
+        //Public Properties:
+        public float EndValue {get; private set;}
 
-		#region Private Variables
-		CanvasGroup _target;
-		float _start;
-		#endregion
+        //Private Variables:
+        CanvasGroup _target;
+        float _start;
 
-		#region Constructor
-		public CanvasGroupAlpha (CanvasGroup target, float endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
-		{
-			//set essential properties:
-			SetEssentials (Tween.TweenType.CanvasGroupAlpha, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
+        //Constructor:
+        public CanvasGroupAlpha (CanvasGroup target, float endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
+        {
+            //set essential properties:
+            SetEssentials (Tween.TweenType.CanvasGroupAlpha, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
 
-			//catalog custom properties:
-			_target = target;
-			EndValue = endValue;
-		}
-		#endregion
+            //catalog custom properties:
+            _target = target;
+            EndValue = endValue;
+        }
 
-		#region Processes
-		protected override bool SetStartValue ()
-		{
-			if (_target == null) return false;
-			_start = _target.alpha;
-			return true;
-		}
+        //Processes:
+        protected override bool SetStartValue ()
+        {
+            if (_target == null) return false;
+            _start = _target.alpha;
+            return true;
+        }
 
-		protected override void Operation (float percentage)
-		{
-			float calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
-			_target.alpha = calculatedValue;
-		}
-		#endregion
+        protected override void Operation (float percentage)
+        {
+            float calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
+            _target.alpha = calculatedValue;
+        }
 
-		#region Loops
-		public override void Loop ()
-		{
-			ResetStartTime ();
-			_target.alpha = _start;
-		}
+        //Loops:
+        public override void Loop ()
+        {
+            ResetStartTime ();
+            _target.alpha = _start;
+        }
 
-		public override void PingPong ()
-		{
-			ResetStartTime ();
-			_target.alpha = EndValue;
-			EndValue = _start;
-			_start = _target.alpha;
-		}
-		#endregion
-	}
+        public override void PingPong ()
+        {
+            ResetStartTime ();
+            _target.alpha = EndValue;
+            EndValue = _start;
+            _start = _target.alpha;
+        }
+    }
 }

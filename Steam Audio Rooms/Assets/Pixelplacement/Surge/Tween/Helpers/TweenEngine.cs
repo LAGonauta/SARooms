@@ -13,35 +13,33 @@ using Pixelplacement;
 
 namespace Pixelplacement.TweenSystem
 {
-	public class TweenEngine : MonoBehaviour 
-	{
-		#region Public Methods
-		public void ExecuteTween (TweenBase tween)
-		{
-			StartCoroutine (RunTween (tween));
-		}
-		#endregion
+    public class TweenEngine : MonoBehaviour 
+    {
+        //Public Methods:
+        public void ExecuteTween (TweenBase tween)
+        {
+            StartCoroutine (RunTween (tween));
+        }
 
-		#region Coroutines
-		//execute tween:
-		static IEnumerator RunTween (TweenBase tween)
-		{
-			Tween.activeTweens.Add (tween);
+        //Coroutines:
+        //execute tween:
+        static IEnumerator RunTween (TweenBase tween)
+        {
+            Tween.activeTweens.Add (tween);
 
-			while (true) 
-			{
-				//tick tween:
-				if (!tween.Tick ())
-				{
-					//clean up tween:
-					Tween.activeTweens.Remove (tween);
-					yield break;
-				}
+            while (true) 
+            {
+                //tick tween:
+                if (!tween.Tick ())
+                {
+                    //clean up tween:
+                    Tween.activeTweens.Remove (tween);
+                    yield break;
+                }
 
-				//loop:
-				yield return null;	
-			}
-		}
-		#endregion
-	}
+                //loop:
+                yield return null;	
+            }
+        }
+    }
 }

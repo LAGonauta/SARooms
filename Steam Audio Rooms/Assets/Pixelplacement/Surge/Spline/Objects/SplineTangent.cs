@@ -12,8 +12,8 @@ using System.Collections;
 
 namespace Pixelplacement
 {
-	[SelectionBase]
-	public class SplineTangent : MonoBehaviour
-	{
-	}
+    [SelectionBase]
+    public class SplineTangent : MonoBehaviour
+    {
+    }
 }

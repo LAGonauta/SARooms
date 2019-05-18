@@ -14,86 +14,82 @@ using System.Reflection;
 
 namespace Pixelplacement
 {
-	public class Initialization : MonoBehaviour
-	{
-		#region Private Variables
-		StateMachine _stateMachine;
-		DisplayObject _displayObject;
-		#endregion
+    public class Initialization : MonoBehaviour
+    {
+        //Private Variables:
+        StateMachine _stateMachine;
+        DisplayObject _displayObject;
 
-		#region Init
-		void Awake()
-		{
-			//singleton initialization:
-			InitializeSingleton();
+        //Init:
+        void Awake()
+        {
+            //singleton initialization:
+            InitializeSingleton();
 
-			//values:
-			_stateMachine = GetComponent<StateMachine>();
-			_displayObject = GetComponent<DisplayObject>();
+            //values:
+            _stateMachine = GetComponent<StateMachine>();
+            _displayObject = GetComponent<DisplayObject>();
 
-			//display object initialization:
-			if (_displayObject != null) _displayObject.Register();
+            //display object initialization:
+            if (_displayObject != null) _displayObject.Register();
 
-			//state machine initialization:
-			if (_stateMachine != null) _stateMachine.Initialize();
-		}
+            //state machine initialization:
+            if (_stateMachine != null) _stateMachine.Initialize();
+        }
 
-		void Start()
-		{
-			//state machine start:
-			if (_stateMachine != null) _stateMachine.StartMachine();
-		}
-		#endregion
+        void Start()
+        {
+            //state machine start:
+            if (_stateMachine != null) _stateMachine.StartMachine();
+        }
 
-		#region Deinit
-		void OnDisable()
-		{
-			if (_stateMachine != null)
-			{
-				if (!_stateMachine.returnToDefaultOnDisable || _stateMachine.defaultState == null) return;
+        //Deinit:
+        void OnDisable()
+        {
+            if (_stateMachine != null)
+            {
+                if (!_stateMachine.returnToDefaultOnDisable || _stateMachine.defaultState == null) return;
 
-				if (_stateMachine.currentState == null)
-				{
-					_stateMachine.ChangeState(_stateMachine.defaultState);
-					return;
-				}
+                if (_stateMachine.currentState == null)
+                {
+                    _stateMachine.ChangeState(_stateMachine.defaultState);
+                    return;
+                }
 
-				if (_stateMachine.currentState != _stateMachine.defaultState)
-				{
-					_stateMachine.ChangeState(_stateMachine.defaultState);
-				}
-			}
-		}
-		#endregion
+                if (_stateMachine.currentState != _stateMachine.defaultState)
+                {
+                    _stateMachine.ChangeState(_stateMachine.defaultState);
+                }
+            }
+        }
 
-		#region Private Methods
-		void InitializeSingleton()
-		{
-			foreach (Component item in GetComponents<Component>())
-			{
-				string baseType;
+        //Private Methods:
+        void InitializeSingleton()
+        {
+            foreach (Component item in GetComponents<Component>())
+            {
+                string baseType;
 
 #if NETFX_CORE
-				baseType = item.GetType ().GetTypeInfo ().BaseType.ToString ();
+                baseType = item.GetType ().GetTypeInfo ().BaseType.ToString ();
 #else
-				baseType = item.GetType().BaseType.ToString();
+                baseType = item.GetType().BaseType.ToString();
 #endif
 
-				if (baseType.Contains("Singleton") && baseType.Contains("Pixelplacement"))
-				{
-					MethodInfo m;
+                if (baseType.Contains("Singleton") && baseType.Contains("Pixelplacement"))
+                {
+                    MethodInfo m;
 
 #if NETFX_CORE
-					m = item.GetType ().GetTypeInfo ().BaseType.GetMethod ("Initialize", BindingFlags.NonPublic | BindingFlags.Instance);
+                    m = item.GetType ().GetTypeInfo ().BaseType.GetMethod ("Initialize", BindingFlags.NonPublic | BindingFlags.Instance);
 #else
-					m = item.GetType().BaseType.GetMethod("Initialize", BindingFlags.NonPublic | BindingFlags.Instance);
+                    m = item.GetType().BaseType.GetMethod("Initialize", BindingFlags.NonPublic | BindingFlags.Instance);
 #endif
 
-					m.Invoke(item, new Component[] { item });
-					break;
-				}
-			}
-		}
-		#endregion
-	}
+                    m.Invoke(item, new Component[] { item });
+                    break;
+                }
+            }
+        }
+    }
 }

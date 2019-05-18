@@ -10,56 +10,51 @@ using Pixelplacement;
 
 namespace Pixelplacement.TweenSystem
 {
-	class ValueRect : TweenBase
-	{
-		#region Public Properties
-		public Rect EndValue {get; private set;}
-		#endregion
+    class ValueRect : TweenBase
+    {
+        //Public Properties:
+        public Rect EndValue {get; private set;}
 
-		#region Private Variables
-		Action<Rect> _valueUpdatedCallback;
-		Rect _start;
-		#endregion
+        //Private Variables:
+        Action<Rect> _valueUpdatedCallback;
+        Rect _start;
 
-		#region Constructor
-		public ValueRect (Rect startValue, Rect endValue, Action<Rect> valueUpdatedCallback, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
-		{
-			//set essential properties:
-			SetEssentials (Tween.TweenType.Value, -1, duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
+        //Constructor:
+        public ValueRect (Rect startValue, Rect endValue, Action<Rect> valueUpdatedCallback, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
+        {
+            //set essential properties:
+            SetEssentials (Tween.TweenType.Value, -1, duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
 
-			//catalog custom properties:
-			_valueUpdatedCallback = valueUpdatedCallback;
-			_start = startValue;
-			EndValue = endValue;
-		}
-		#endregion
+            //catalog custom properties:
+            _valueUpdatedCallback = valueUpdatedCallback;
+            _start = startValue;
+            EndValue = endValue;
+        }
 
-		#region Processes
-		protected override bool SetStartValue ()
-		{
-			return true;
-		}
+        //Processes:
+        protected override bool SetStartValue ()
+        {
+            return true;
+        }
 
-		protected override void Operation (float percentage)
-		{
-			Rect calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
-			_valueUpdatedCallback (calculatedValue);
-		}
-		#endregion
+        protected override void Operation (float percentage)
+        {
+            Rect calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
+            _valueUpdatedCallback (calculatedValue);
+        }
 
-		#region Loops
-		public override void Loop ()
-		{
-			ResetStartTime ();
-		}
+        //Loops:
+        public override void Loop ()
+        {
+            ResetStartTime ();
+        }
 
-		public override void PingPong ()
-		{
-			ResetStartTime ();
-			Rect temp = _start;
-			_start = EndValue;
-			EndValue = temp;
-		}
-		#endregion
-	}
+        public override void PingPong ()
+        {
+            ResetStartTime ();
+            Rect temp = _start;
+            _start = EndValue;
+            EndValue = temp;
+        }
+    }
 }

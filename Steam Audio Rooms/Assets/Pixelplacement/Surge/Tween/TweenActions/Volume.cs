@@ -10,58 +10,53 @@ using Pixelplacement;
 
 namespace Pixelplacement.TweenSystem
 {
-	class Volume : TweenBase
-	{
-		#region Public Properties
-		public float EndValue {get; private set;}
-		#endregion
+    class Volume : TweenBase
+    {
+        //Public Properties:
+        public float EndValue {get; private set;}
 
-		#region Private Variables
-		AudioSource _target;
-		float _start;
-		#endregion
+        //Private Variables:
+        AudioSource _target;
+        float _start;
 
-		#region Constructor
-		public Volume (AudioSource target, float endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
-		{
-			//set essential properties:
-			SetEssentials (Tween.TweenType.Volume, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
+        //Constructor:
+        public Volume (AudioSource target, float endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
+        {
+            //set essential properties:
+            SetEssentials (Tween.TweenType.Volume, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
 
-			//catalog custom properties:
-			_target = target;
-			EndValue = endValue;
-		}
-		#endregion
+            //catalog custom properties:
+            _target = target;
+            EndValue = endValue;
+        }
 
-		#region Processes
-		protected override bool SetStartValue ()
-		{
-			if (_target == null) return false;
-			_start = _target.volume;
-			return true;
-		}
+        //Processes:
+        protected override bool SetStartValue ()
+        {
+            if (_target == null) return false;
+            _start = _target.volume;
+            return true;
+        }
 
-		protected override void Operation (float percentage)
-		{
-			float calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
-			_target.volume = calculatedValue;
-		}
-		#endregion
+        protected override void Operation (float percentage)
+        {
+            float calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
+            _target.volume = calculatedValue;
+        }
 
-		#region Loops
-		public override void Loop ()
-		{
-			ResetStartTime ();
-			_target.volume = _start;
-		}
+        //Loops:
+        public override void Loop ()
+        {
+            ResetStartTime ();
+            _target.volume = _start;
+        }
 
-		public override void PingPong ()
-		{
-			ResetStartTime ();
-			_target.volume = EndValue;
-			EndValue = _start;
-			_start = _target.volume;
-		}
-		#endregion
-	}
+        public override void PingPong ()
+        {
+            ResetStartTime ();
+            _target.volume = EndValue;
+            EndValue = _start;
+            _start = _target.volume;
+        }
+    }
 }

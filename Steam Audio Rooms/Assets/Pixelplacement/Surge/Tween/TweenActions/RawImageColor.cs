@@ -11,58 +11,53 @@ using Pixelplacement;
 
 namespace Pixelplacement.TweenSystem
 {
-	class RawImageColor : TweenBase
-	{
-		#region Public Properties
-		public Color EndValue {get; private set;}
-		#endregion
+    class RawImageColor : TweenBase
+    {
+        //Public Properties:
+        public Color EndValue {get; private set;}
 
-		#region Private Variables
-		RawImage _target;
-		Color _start;
-		#endregion
+        //Private Variables:
+        RawImage _target;
+        Color _start;
 
-		#region Constructor
-		public RawImageColor (RawImage target, Color endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
-		{
-			//set essential properties:
-			SetEssentials (Tween.TweenType.RawImageColor, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
+        //Constructor:
+        public RawImageColor (RawImage target, Color endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
+        {
+            //set essential properties:
+            SetEssentials (Tween.TweenType.RawImageColor, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
 
-			//catalog custom properties:
-			_target = target;
-			EndValue = endValue;
-		}
-		#endregion
+            //catalog custom properties:
+            _target = target;
+            EndValue = endValue;
+        }
 
-		#region Processes
-		protected override bool SetStartValue ()
-		{
-			if (_target == null) return false;
-			_start = _target.color;
-			return true;
-		}
+        //Processes:
+        protected override bool SetStartValue ()
+        {
+            if (_target == null) return false;
+            _start = _target.color;
+            return true;
+        }
 
-		protected override void Operation (float percentage)
-		{
-			Color calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
-			_target.color = calculatedValue;
-		}
-		#endregion
+        protected override void Operation (float percentage)
+        {
+            Color calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
+            _target.color = calculatedValue;
+        }
 
-		#region Loops
-		public override void Loop ()
-		{
-			ResetStartTime ();
-			_target.color = _start;
-		}
+        //Loops:
+        public override void Loop ()
+        {
+            ResetStartTime ();
+            _target.color = _start;
+        }
 
-		public override void PingPong ()
-		{
-			ResetStartTime ();
-			_target.color = EndValue;
-			EndValue = _start;
-			_start = _target.color;
-		}
-		#endregion
-	}
+        public override void PingPong ()
+        {
+            ResetStartTime ();
+            _target.color = EndValue;
+            EndValue = _start;
+            _start = _target.color;
+        }
+    }
 }

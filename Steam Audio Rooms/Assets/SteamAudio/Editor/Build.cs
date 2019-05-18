@@ -48,12 +48,12 @@ namespace SteamAudio
 
         static string[] FMODStudioPlugins =
         {
-            // "Assets/Plugins/x86/phonon_fmod.dll",
-            "Assets/Plugins/x86_64/phonon_fmod.dll" //,
-            // "Assets/Plugins/x86/libphonon_fmod.so",
-            // "Assets/Plugins/x86_64/libphonon_fmod.so",
-            // "Assets/Plugins/phonon_fmod.bundle",
-            // "Assets/Plugins/android/libphonon_fmod.so"
+            "Assets/Plugins/x86/phonon_fmod.dll",
+            "Assets/Plugins/x86_64/phonon_fmod.dll",
+            "Assets/Plugins/x86/libphonon_fmod.so",
+            "Assets/Plugins/x86_64/libphonon_fmod.so",
+            "Assets/Plugins/phonon_fmod.bundle",
+            "Assets/Plugins/android/libphonon_fmod.so"
         };
 
         static string[] TrueAudioNextPlugins =
@@ -75,6 +75,12 @@ namespace SteamAudio
             "Assets/Plugins/libtbbmalloc.dylib"
         };
 
+        static string[] RadeonRaysPlugins =
+        {
+            "Assets/Plugins/x86_64/RadeonRays.dll",
+            "Assets/Plugins/x86_64/GPUUtilities.dll"
+        };
+
         static string FMODStudioAudioEngineSuffix = "_FMODStudio";
 
         public static string[] FilteredAssets(string directory, string[] excludeSuffixes, string includeOnlySuffix)
@@ -85,7 +91,7 @@ namespace SteamAudio
             var assets = new List<string>();
             foreach (var file in files)
             {
-                if (file.Contains(".meta"))
+                if (file.Contains(".meta") || file.Contains(".in"))
                     continue;
 
                 if (excludeSuffixes != null)
@@ -175,6 +181,14 @@ namespace SteamAudio
             var assets = BuildAssetList(assetGroups);
 
             AssetDatabase.ExportPackage(assets, "SteamAudio_Embree.unitypackage", ExportPackageOptions.Recurse);
+        }
+
+        public static void BuildSteamAudioRadeonRays()
+        {
+            var assetGroups = new string[][] { RadeonRaysPlugins };
+            var assets = BuildAssetList(assetGroups);
+
+            AssetDatabase.ExportPackage(assets, "SteamAudio_RadeonRays.unitypackage", ExportPackageOptions.Recurse);
         }
     }
 

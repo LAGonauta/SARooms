@@ -12,58 +12,54 @@ using System.Collections;
 
 namespace Pixelplacement
 {
-	[System.Serializable]
-	public class SplineFollower
-	{
-		#region Public Variables
-		public Transform target;
-		public float percentage = -1;
-		public bool faceDirection;
-		#endregion
+    [System.Serializable]
+    public class SplineFollower
+    {
+        //Public Variables:
+        public Transform target;
+        public float percentage = -1;
+        public bool faceDirection;
 
-		#region Public Properties
-		public bool WasMoved
-		{
-			get
-			{
-				if (percentage != _previousPercentage || faceDirection != _previousFaceDirection) {
-					_previousPercentage = percentage;
-					_previousFaceDirection = faceDirection;
-					return true;
-				} else {
-					return false;	
-				}
-			}
-		}
-		#endregion
+        //Public Properties:
+        public bool WasMoved
+        {
+            get
+            {
+                if (percentage != _previousPercentage || faceDirection != _previousFaceDirection) {
+                    _previousPercentage = percentage;
+                    _previousFaceDirection = faceDirection;
+                    return true;
+                } else {
+                    return false;	
+                }
+            }
+        }
 
-		#region Private Variables
-		float _previousPercentage;
-		bool _previousFaceDirection;
-		bool _detached;
-		#endregion
+        //Private Variables:
+        float _previousPercentage;
+        bool _previousFaceDirection;
+        bool _detached;
 
-		#region Public Methods
-		public void UpdateOrientation (Spline spline)
-		{
-			if (target == null) return;
+        //Public Methods:
+        public void UpdateOrientation (Spline spline)
+        {
+            if (target == null) return;
 
-			//clamp percentage:
-			if (!spline.loop) percentage = Mathf.Clamp01 (percentage);
+            //clamp percentage:
+            if (!spline.loop) percentage = Mathf.Clamp01 (percentage);
 
-			//look in direction of spline?
-			if (faceDirection)
-			{
-				if (spline.direction == SplineDirection.Forward)
-				{
-					target.LookAt (target.position + spline.GetDirection (percentage));
-				}else{
-					target.LookAt (target.position - spline.GetDirection (percentage));
-				}
-			}
+            //look in direction of spline?
+            if (faceDirection)
+            {
+                if (spline.direction == SplineDirection.Forward)
+                {
+                    target.LookAt (target.position + spline.GetDirection (percentage));
+                }else{
+                    target.LookAt (target.position - spline.GetDirection (percentage));
+                }
+            }
 
-			target.position = spline.GetPosition (percentage);	
-		}
-		#endregion
-	}
+            target.position = spline.GetPosition (percentage);
+        }
+    }
 }

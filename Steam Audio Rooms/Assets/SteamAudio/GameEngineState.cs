@@ -4,6 +4,8 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace SteamAudio
@@ -30,31 +32,46 @@ namespace SteamAudio
 
                 var useOpenCL = false;
                 var computeDeviceType = ComputeDeviceType.Any;
-                var requiresTan = false;
-                var minReservableCUs = 0;
                 var maxCUsToReserve = 0;
+                var fractionCUsForIRUpdate = .0f;
 
-                if (customSettings)
+                convolutionType = ConvolutionOption.Phonon;
+                var rayTracer = SceneType.Phonon;
+
+                // TAN is enabled for realtime.
+                if (customSettings && customSettings.ConvolutionType() == ConvolutionOption.TrueAudioNext 
+                    && reason == GameEngineStateInitReason.Playing)
                 {
-#if ((UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN) && UNITY_64)
-                    convolutionType = customSettings.convolutionOption;
+                    convolutionType = customSettings.ConvolutionType();
 
-                    if (customSettings.convolutionOption == ConvolutionOption.TrueAudioNext)
+                    useOpenCL = true;
+                    computeDeviceType = ComputeDeviceType.GPU;
+                    maxCUsToReserve = customSettings.maxComputeUnitsToReserve;
+                    fractionCUsForIRUpdate = customSettings.fractionComputeUnitsForIRUpdate;
+                }
+
+                // Enable some settings which are commong whether Radeon Rays is enabled for baking or realtime.
+                if (customSettings && (reason == GameEngineStateInitReason.Baking || reason == GameEngineStateInitReason.Playing))
+                {
+                    if (customSettings.RayTracerType() != SceneType.RadeonRays)
+                    {
+                        rayTracer = customSettings.RayTracerType();
+                    }
+                    else
                     {
                         useOpenCL = true;
-                        requiresTan = true;
+                        rayTracer = SceneType.RadeonRays;
                         computeDeviceType = ComputeDeviceType.GPU;
-                        minReservableCUs = customSettings.minComputeUnitsToReserve;
-                        maxCUsToReserve = customSettings.maxComputeUnitsToReserve;
                     }
-                    else if (customSettings.rayTracerOption == SceneType.RadeonRays)
-                    {
-                        useOpenCL = true;
-                    }
-#else
-                    convolutionType = ConvolutionOption.Phonon;
-                    customSettings.convolutionOption = ConvolutionOption.Phonon;
-#endif
+                }
+
+                // Enable additional settings when Radeon Rays is enabled for realtime but TAN is not.
+                if (customSettings && customSettings.RayTracerType() == SceneType.RadeonRays 
+                    && customSettings.ConvolutionType() != ConvolutionOption.TrueAudioNext 
+                    && reason == GameEngineStateInitReason.Playing)
+                {
+                    maxCUsToReserve = customSettings.maxComputeUnitsToReserve;
+                    fractionCUsForIRUpdate = 1.0f;
                 }
 
                 try
@@ -62,34 +79,87 @@ namespace SteamAudio
                     var deviceFilter = new ComputeDeviceFilter
                     {
                         type = computeDeviceType,
-                        requiresTrueAudioNext = (requiresTan) ? Bool.True : Bool.False,
-                        minReservableCUs = minReservableCUs,
-                        maxCUsToReserve = maxCUsToReserve
+                        maxCUsToReserve = maxCUsToReserve,
+                        fractionCUsForIRUpdate = fractionCUsForIRUpdate
                     };
 
                     computeDevice.Create(context, useOpenCL, deviceFilter);
                 }
                 catch (Exception e)
                 {
-                    Debug.LogWarning(String.Format("Unable to initialize TrueAudio Next: {0}. Using Phonon convolution.",
-                        e.Message));
+                    if (customSettings && convolutionType == ConvolutionOption.TrueAudioNext) 
+                    {
+                        if (!File.Exists(Directory.GetCurrentDirectory() + "/Assets/Plugins/x86_64/tanrt64.dll")) 
+                        {
+                            throw new Exception(
+                                "Steam Audio configured to use TrueAudio Next, but TrueAudio Next support package " +
+                                "not installed. Please import SteamAudio_TrueAudioNext.unitypackage in order to use " +
+                                "TrueAudio Next support for Steam Audio.");
+                        }
+                    }
+                    else 
+                    {
+                        Debug.LogWarning(String.Format("Unable to create compute device: {0}. Using Phonon convolution and raytracer.",
+                            e.Message));
+                    }
 
                     convolutionType = ConvolutionOption.Phonon;
-                    customSettings.convolutionOption = ConvolutionOption.Phonon;
+                    rayTracer = SceneType.Phonon;
                 }
 
                 var inEditor = !SteamAudioManager.IsAudioEngineInitializing();
 
+                var maxSources = settings.MaxSources;
+                if (customSettings && convolutionType == ConvolutionOption.TrueAudioNext) {
+                    maxSources = customSettings.MaxSources;
+                }
+                if (rayTracer == SceneType.RadeonRays && reason == GameEngineStateInitReason.Baking) {
+                    maxSources = customSettings.BakingBatchSize;
+                }
+
                 simulationSettings = new SimulationSettings
                 {
-                    sceneType               = (customSettings) ? customSettings.rayTracerOption : SceneType.Phonon,
+                    sceneType               = rayTracer,
+                    occlusionSamples        = settings.OcclusionSamples,
                     rays                    = (inEditor) ? settings.BakeRays : settings.RealtimeRays,
                     secondaryRays           = (inEditor) ? settings.BakeSecondaryRays : settings.RealtimeSecondaryRays,
                     bounces                 = (inEditor) ? settings.BakeBounces : settings.RealtimeBounces,
-                    irDuration              = (customSettings && customSettings.convolutionOption == ConvolutionOption.TrueAudioNext) ? customSettings.Duration : settings.Duration,
-                    ambisonicsOrder         = (customSettings && customSettings.convolutionOption == ConvolutionOption.TrueAudioNext) ? customSettings.AmbisonicsOrder : settings.AmbisonicsOrder,
-                    maxConvolutionSources   = (customSettings && customSettings.convolutionOption == ConvolutionOption.TrueAudioNext) ? customSettings.MaxSources : settings.MaxSources
+                    threads                 = (inEditor) ? (int) Mathf.Max(1, (settings.BakeThreadsPercentage * SystemInfo.processorCount) / 100.0f) : (int) Mathf.Max(1, (settings.RealtimeThreadsPercentage * SystemInfo.processorCount) / 100.0f),
+                    irDuration              = (customSettings && convolutionType == ConvolutionOption.TrueAudioNext) ? customSettings.Duration : settings.Duration,
+                    ambisonicsOrder         = (customSettings && convolutionType == ConvolutionOption.TrueAudioNext) ? customSettings.AmbisonicsOrder : settings.AmbisonicsOrder,
+                    maxConvolutionSources   = maxSources,
+                    bakingBatchSize         = (rayTracer == SceneType.RadeonRays) ? customSettings.BakingBatchSize : 1,
+                    irradianceMinDistance   = settings.IrradianceMinDistance
                 };
+
+#if UNITY_EDITOR
+                if (customSettings) {
+                    if (rayTracer == SceneType.Embree) {
+                        if (!File.Exists(Directory.GetCurrentDirectory() + "/Assets/Plugins/x86_64/embree.dll")) {
+                            throw new Exception(
+                                "Steam Audio configured to use Embree, but Embree support package not installed. " +
+                                "Please import SteamAudio_Embree.unitypackage in order to use Embree support for " +
+                                "Steam Audio.");
+                        }
+                    } else if (rayTracer == SceneType.RadeonRays) {
+                        if (!File.Exists(Directory.GetCurrentDirectory() + "/Assets/Plugins/x86_64/RadeonRays.dll")) {
+                            throw new Exception(
+                                "Steam Audio configured to use Radeon Rays, but Radeon Rays support package not " +
+                                "installed. Please import SteamAudio_RadeonRays.unitypackage in order to use Radeon " +
+                                "Rays support for Steam Audio.");
+                        }
+                    }
+
+                    if (convolutionType == ConvolutionOption.TrueAudioNext) {
+                        if (!File.Exists(Directory.GetCurrentDirectory() + "/Assets/Plugins/x86_64/tanrt64.dll")) {
+                            throw new Exception(
+                                "Steam Audio configured to use TrueAudio Next, but TrueAudio Next support package " +
+                                "not installed. Please import SteamAudio_TrueAudioNext.unitypackage in order to use " +
+                                "TrueAudio Next support for Steam Audio.");
+                        }
+                    }
+                }
+#endif
 
                 if (reason != GameEngineStateInitReason.ExportingScene)
                     scene.Create(computeDevice, simulationSettings, context);
@@ -165,7 +235,7 @@ namespace SteamAudio
             }
             catch (Exception e)
             {
-                Debug.LogError("Phonon Geometry not attached. " + e.Message);
+                Debug.LogError(e.Message);
             }
         }
 
@@ -181,5 +251,7 @@ namespace SteamAudio
         ProbeManager        probeManager        = new ProbeManager();
         Environment         environment         = new Environment();
         ConvolutionOption   convolutionType     = ConvolutionOption.Phonon;
+
+        public Dictionary<string, IntPtr> instancedScenes = null;
     }
 }

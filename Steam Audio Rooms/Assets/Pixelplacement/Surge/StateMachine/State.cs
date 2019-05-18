@@ -12,62 +12,60 @@ using System.Collections;
 
 namespace Pixelplacement
 {
-	public class State : MonoBehaviour 
-	{
-		#region Public Properties
-		/// <summary>
-		/// Gets a value indicating whether this instance is the first state in this state machine.
-		/// </summary>
-		public bool IsFirst
-		{
-			get
-			{
-				return transform.GetSiblingIndex () == 0;
-			}
-		}
+    public class State : MonoBehaviour 
+    {
+        //Public Properties:
+        /// <summary>
+        /// Gets a value indicating whether this instance is the first state in this state machine.
+        /// </summary>
+        public bool IsFirst
+        {
+            get
+            {
+                return transform.GetSiblingIndex () == 0;
+            }
+        }
 
-		/// <summary>
-		/// Gets a value indicating whether this instance is the last state in this state machine.
-		/// </summary>
-		public bool IsLast
-		{
-			get
-			{
-				return transform.GetSiblingIndex () == transform.parent.childCount - 1;
-			}
-		}
+        /// <summary>
+        /// Gets a value indicating whether this instance is the last state in this state machine.
+        /// </summary>
+        public bool IsLast
+        {
+            get
+            {
+                return transform.GetSiblingIndex () == transform.parent.childCount - 1;
+            }
+        }
 
-		/// <summary>
-		/// Gets or sets the state machine.
-		/// </summary>
-		public StateMachine StateMachine
-		{
-			get
-			{
-				if (_stateMachine == null)
-				{
-					_stateMachine = transform.parent.GetComponent<StateMachine>();
-					if (_stateMachine == null)
-					{
-						Debug.LogError("States must be the child of a StateMachine to operate.");
-						return null;
-					}
-				}
+        /// <summary>
+        /// Gets or sets the state machine.
+        /// </summary>
+        public StateMachine StateMachine
+        {
+            get
+            {
+                if (_stateMachine == null)
+                {
+                    _stateMachine = transform.parent.GetComponent<StateMachine>();
+                    if (_stateMachine == null)
+                    {
+                        Debug.LogError("States must be the child of a StateMachine to operate.");
+                        return null;
+                    }
+                }
 
-				return _stateMachine;
-			}
-		}
-		#endregion
+                return _stateMachine;
+            }
+        }
 
-		#region Private Variables
-		StateMachine _stateMachine;
-		#endregion
+        //Private Variables:
+        StateMachine _stateMachine;
 
-		#region Public Methods
-		/// <summary>
-		/// Changes the state.
-		/// </summary>
-		public void ChangeState(int childIndex)
+        //Public Methods
+        /// <summary>
+        /// Changes the state.
+        /// </summary>
+        public void ChangeState(int childIndex)
         {
             StateMachine.ChangeState(childIndex);
         }
@@ -76,42 +74,41 @@ namespace Pixelplacement
         /// Changes the state.
         /// </summary>
         public void ChangeState (GameObject state)
-		{
-			StateMachine.ChangeState (state.name);
-		}
+        {
+            StateMachine.ChangeState (state.name);
+        }
 
-		/// <summary>
-		/// Changes the state.
-		/// </summary>
-		public void ChangeState (string state)
-		{
-			if (StateMachine == null) return;
-			StateMachine.ChangeState (state);
-		}
+        /// <summary>
+        /// Changes the state.
+        /// </summary>
+        public void ChangeState (string state)
+        {
+            if (StateMachine == null) return;
+            StateMachine.ChangeState (state);
+        }
 
-		/// <summary>
-		/// Change to the next state if possible.
-		/// </summary>
-		public GameObject Next ()
-		{
-			return StateMachine.Next ();
-		}
+        /// <summary>
+        /// Change to the next state if possible.
+        /// </summary>
+        public GameObject Next ()
+        {
+            return StateMachine.Next ();
+        }
 
-		/// <summary>
-		/// Change to the previous state if possible.
-		/// </summary>
-		public GameObject Previous ()
-		{
-			return StateMachine.Previous ();
-		}
+        /// <summary>
+        /// Change to the previous state if possible.
+        /// </summary>
+        public GameObject Previous ()
+        {
+            return StateMachine.Previous ();
+        }
 
-		/// <summary>
-		/// Exit the current state.
-		/// </summary>
-		public void Exit ()
-		{
-			StateMachine.Exit ();
-		}
-		#endregion
-	}
+        /// <summary>
+        /// Exit the current state.
+        /// </summary>
+        public void Exit ()
+        {
+            StateMachine.Exit ();
+        }
+    }
 }

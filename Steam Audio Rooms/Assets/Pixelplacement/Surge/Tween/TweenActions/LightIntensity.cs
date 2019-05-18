@@ -10,58 +10,53 @@ using Pixelplacement;
 
 namespace Pixelplacement.TweenSystem
 {
-	class LightIntensity : TweenBase
-	{
-		#region Public Properties
-		public float EndValue {get; private set;}
-		#endregion
+    class LightIntensity : TweenBase
+    {
+        //Public Properties:
+        public float EndValue {get; private set;}
 
-		#region Private Variables
-		Light _target;
-		float _start;
-		#endregion
+        //Private Variables:
+        Light _target;
+        float _start;
 
-		#region Constructor
-		public LightIntensity (Light target, float endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
-		{
-			//set essential properties:
-			SetEssentials (Tween.TweenType.LightIntensity, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
+        //Constructor:
+        public LightIntensity (Light target, float endValue, float duration, float delay, bool obeyTimescale, AnimationCurve curve, Tween.LoopType loop, Action startCallback, Action completeCallback)
+        {
+            //set essential properties:
+            SetEssentials (Tween.TweenType.LightIntensity, target.GetInstanceID (), duration, delay, obeyTimescale, curve, loop, startCallback, completeCallback);
 
-			//catalog custom properties:
-			_target = target;
-			EndValue = endValue;
-		}
-		#endregion
+            //catalog custom properties:
+            _target = target;
+            EndValue = endValue;
+        }
 
-		#region Processes
-		protected override bool SetStartValue ()
-		{
-			if (_target == null) return false;
-			_start = _target.intensity;
-			return true;
-		}
+        //Processes:
+        protected override bool SetStartValue ()
+        {
+            if (_target == null) return false;
+            _start = _target.intensity;
+            return true;
+        }
 
-		protected override void Operation (float percentage)
-		{
-			float calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
-			_target.intensity = calculatedValue;
-		}
-		#endregion
+        protected override void Operation (float percentage)
+        {
+            float calculatedValue = TweenUtilities.LinearInterpolate (_start, EndValue, percentage);
+            _target.intensity = calculatedValue;
+        }
 
-		#region Loops
-		public override void Loop ()
-		{
-			ResetStartTime ();
-			_target.intensity = _start;
-		}
+        //Loops:
+        public override void Loop ()
+        {
+            ResetStartTime ();
+            _target.intensity = _start;
+        }
 
-		public override void PingPong ()
-		{
-			ResetStartTime ();
-			_target.intensity = EndValue;
-			EndValue = _start;
-			_start = _target.intensity;
-		}
-		#endregion
-	}
+        public override void PingPong ()
+        {
+            ResetStartTime ();
+            _target.intensity = EndValue;
+            EndValue = _start;
+            _start = _target.intensity;
+        }
+    }
 }
