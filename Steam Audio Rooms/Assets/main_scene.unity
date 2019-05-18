@@ -9436,7 +9436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421689949}
-  - component: {fileID: 421689951}
+  - component: {fileID: 421689952}
   - component: {fileID: 421689950}
   m_Layer: 0
   m_Name: Voices Entry Door
@@ -9478,8 +9478,8 @@ MonoBehaviour:
   m_door_open_stop: {fileID: 8300000, guid: 066345ba351ed9f44bf3939c522165aa, type: 3}
   m_door_close: {fileID: 8300000, guid: ebe3c533e2eac8848b8c9bf7711fedfe, type: 3}
   m_door_close_stop: {fileID: 8300000, guid: aaab4e5647696ff488bd9eddcf534640, type: 3}
---- !u!64 &421689951
-MeshCollider:
+--- !u!65 &421689952
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9488,10 +9488,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 15
-  m_Mesh: {fileID: 4300000, guid: 321387c9bfecaf44fa5f546739351f81, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.99197197, y: 4, z: 4}
+  m_Center: {x: -30.254013, y: 2, z: -7.5}
 --- !u!1 &423753365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: ec5751664eb593341b371225f575c4c4,
@@ -10491,7 +10490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 595495332}
-  - component: {fileID: 595495334}
+  - component: {fileID: 595495335}
   - component: {fileID: 595495333}
   m_Layer: 0
   m_Name: Voices Exit Door
@@ -10533,8 +10532,8 @@ MonoBehaviour:
   m_door_open_stop: {fileID: 8300000, guid: 066345ba351ed9f44bf3939c522165aa, type: 3}
   m_door_close: {fileID: 8300000, guid: ebe3c533e2eac8848b8c9bf7711fedfe, type: 3}
   m_door_close_stop: {fileID: 8300000, guid: aaab4e5647696ff488bd9eddcf534640, type: 3}
---- !u!64 &595495334
-MeshCollider:
+--- !u!65 &595495335
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10543,10 +10542,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 15
-  m_Mesh: {fileID: 4300000, guid: 12d7111216d1fc64894233b355cf3444, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.5164986, y: 4.0233674, z: 4.0631266}
+  m_Center: {x: -44.743073, y: 1.9902103, z: -7.4814897}
 --- !u!1 &624476478
 GameObject:
   m_ObjectHideFlags: 0
@@ -11422,8 +11420,8 @@ MonoBehaviour:
   m_door_open_stop: {fileID: 8300000, guid: 066345ba351ed9f44bf3939c522165aa, type: 3}
   m_door_close: {fileID: 8300000, guid: ebe3c533e2eac8848b8c9bf7711fedfe, type: 3}
   m_door_close_stop: {fileID: 8300000, guid: aaab4e5647696ff488bd9eddcf534640, type: 3}
---- !u!64 &679184548
-MeshCollider:
+--- !u!65 &679184548
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11432,10 +11430,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 15
-  m_Mesh: {fileID: 4300000, guid: c63d49339c270ba43820f2f84984a02d, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.70199585, y: 4.0363345, z: 4.1112366}
+  m_Center: {x: -22.750946, y: 2.0066626, z: 17.000317}
 --- !u!1 &682176380 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 645a80c8cb46d8149953f7923feb8b06,
@@ -16521,8 +16518,8 @@ Transform:
   m_Father: {fileID: 873058339}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1359423174
-MeshCollider:
+--- !u!65 &1359423174
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -16531,10 +16528,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 15
-  m_Mesh: {fileID: 4300000, guid: c3ac79c125c738845b0c0cc09663c19a, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 4.052864, y: 4.100566, z: 0.9522934}
+  m_Center: {x: 11.01893, y: 1.9795918, z: 7.226701}
 --- !u!114 &1359423175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19270,6 +19266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1761419676}
   - component: {fileID: 1761419678}
+  - component: {fileID: 1761419679}
   - component: {fileID: 1761419677}
   m_Layer: 0
   m_Name: Monster Exit Door
@@ -19320,11 +19317,24 @@ MeshCollider:
   m_GameObject: {fileID: 1761419675}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 15
   m_Mesh: {fileID: 4300000, guid: ce89f755559121443acb642b096b713d, type: 3}
+--- !u!65 &1761419679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761419675}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.029602, y: 4.045771, z: 1.0404754}
+  m_Center: {x: -69.99173, y: 1.9782331, z: -0.2630899}
 --- !u!1 &1780433012 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 342beea0bc822d145a1e2a05e120c56e,
@@ -19793,8 +19803,8 @@ MonoBehaviour:
   m_door_open_stop: {fileID: 8300000, guid: 066345ba351ed9f44bf3939c522165aa, type: 3}
   m_door_close: {fileID: 8300000, guid: ebe3c533e2eac8848b8c9bf7711fedfe, type: 3}
   m_door_close_stop: {fileID: 8300000, guid: aaab4e5647696ff488bd9eddcf534640, type: 3}
---- !u!64 &1848899879
-MeshCollider:
+--- !u!65 &1848899879
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19803,10 +19813,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 15
-  m_Mesh: {fileID: 4300000, guid: 9e2831b6ec1860848a799cf632d9b4f2, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.0411682, y: 4.021025, z: 4.0675535}
+  m_Center: {x: -60.2666, y: 2.0078638, z: -7.4836135}
 --- !u!1 &1867069845
 GameObject:
   m_ObjectHideFlags: 0

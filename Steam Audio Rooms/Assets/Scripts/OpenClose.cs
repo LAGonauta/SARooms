@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OpenClose : MonoBehaviour
 {
-
   [SerializeField] private float m_speed = 0;
   [SerializeField] private Vector3 m_open_target;
   [SerializeField] private AudioClip m_door_open;
@@ -19,7 +18,7 @@ public class OpenClose : MonoBehaviour
   private float step = 0;
 
   // Use this for initialization
-  void Start()
+  private void Start()
   {
     m_audiosource = gameObject.GetComponentInChildren<AudioSource>();
     // Dummy AudioSource if there is no available.
@@ -29,7 +28,7 @@ public class OpenClose : MonoBehaviour
     m_target = m_close_target;
   }
 
-  void OnTriggerEnter(Collider other)
+  private void OnTriggerEnter(Collider other)
   {
     if (other.tag == "Player")
     {
@@ -39,9 +38,8 @@ public class OpenClose : MonoBehaviour
     }
   }
 
-  void OnTriggerExit(Collider other)
+  private void OnTriggerExit(Collider other)
   {
-    
     if (other.CompareTag("Player"))
     {
       m_audiosource.PlayOneShot(m_door_close);
@@ -51,7 +49,7 @@ public class OpenClose : MonoBehaviour
   }
 
   // Update is called once per frame
-  void Update()
+  private void Update()
   {
     if (m_opening)
     {
@@ -80,7 +78,7 @@ public class OpenClose : MonoBehaviour
         m_audiosource.Stop();
         m_audiosource.PlayOneShot(m_door_close_stop);
         m_closing = false;
-      }      
+      }
     }
   }
 }
