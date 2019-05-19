@@ -6289,6 +6289,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 825265a229ccef04ab83bdca24c7518b, type: 3}
+--- !u!114 &121748220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121748217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!114 &121748222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7677,15 +7691,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43300f764e354d642abf0f0dbb612011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Preset: 10
+  Preset: 11
   Value:
-    LowFreqAbsorption: 0.13
-    MidFreqAbsorption: 0.2
-    HighFreqAbsorption: 0.24
-    Scattering: 0.05
-    LowFreqTransmission: 0.015
-    MidFreqTransmission: 0.002
-    HighFreqTransmission: 0.001
+    LowFreqAbsorption: 0.3
+    MidFreqAbsorption: 0.4
+    HighFreqAbsorption: 0.7
+    Scattering: 0.5
+    LowFreqTransmission: 0.15
+    MidFreqTransmission: 0.15
+    HighFreqTransmission: 0.15
+--- !u!114 &210229216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210229212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1 &220105487
 GameObject:
   m_ObjectHideFlags: 0
@@ -8384,7 +8412,7 @@ MonoBehaviour:
   bakedProbeDataSizes: d0e02c01
   bakedDataSize: 19718352
   bakedStatsFoldout: 1
-  bakeToggle: 0
+  bakeToggle: 1
   currentStaticListenerNode: {fileID: 0}
 --- !u!114 &280109468
 MonoBehaviour:
@@ -8528,7 +8556,7 @@ MonoBehaviour:
   updateComponents: 1
   currentAudioListener: {fileID: 0}
   showLoadTimeOptions: 0
-  showMassBakingOptions: 1
+  showMassBakingOptions: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -9147,6 +9175,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 41696aa0ad504db429a242784a87e3e0, type: 3}
+--- !u!114 &404222519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404222516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!114 &404222521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9792,6 +9834,20 @@ MonoBehaviour:
     LowFreqTransmission: 0.2
     MidFreqTransmission: 0.025
     HighFreqTransmission: 0.01
+--- !u!114 &445993580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445993576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1 &468852220
 GameObject:
   m_ObjectHideFlags: 0
@@ -14922,6 +14978,20 @@ MonoBehaviour:
     LowFreqTransmission: 0.2
     MidFreqTransmission: 0.025
     HighFreqTransmission: 0.01
+--- !u!114 &1229230435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229230431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1 &1237930062
 GameObject:
   m_ObjectHideFlags: 0
@@ -15241,6 +15311,20 @@ MonoBehaviour:
     LowFreqTransmission: 0.2
     MidFreqTransmission: 0.025
     HighFreqTransmission: 0.01
+--- !u!114 &1267019341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267019337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1 &1267721222
 GameObject:
   m_ObjectHideFlags: 0
@@ -15564,6 +15648,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 6f2521ef23f4a464aaf11638cf6ba792, type: 3}
+--- !u!114 &1276409936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276409933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!114 &1276409938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17859,6 +17957,20 @@ MonoBehaviour:
     LowFreqTransmission: 0.015
     MidFreqTransmission: 0.015
     HighFreqTransmission: 0.015
+--- !u!114 &1577855422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577855418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1 &1581795832
 GameObject:
   m_ObjectHideFlags: 0
@@ -19740,6 +19852,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 45c6107e1fb89f34ea35131d01c6174f, type: 3}
+--- !u!114 &1891672431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891672428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!114 &1891672433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19814,6 +19940,20 @@ MonoBehaviour:
     LowFreqTransmission: 0.2
     MidFreqTransmission: 0.025
     HighFreqTransmission: 0.01
+--- !u!114 &1906994529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906994525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 1
 --- !u!1 &1907073712
 GameObject:
   m_ObjectHideFlags: 0
